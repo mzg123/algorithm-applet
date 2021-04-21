@@ -1,4 +1,5 @@
 // pages/service/algorithm/compare.js
+const CusBase64 = require('../../utils/base64.js');
 const app = getApp()
 Component({
   /**
@@ -12,18 +13,36 @@ Component({
    * 组件的初始数据
    */
   data: {
-    selected: '',
+    selected: 'a',
     items: [
-      {value: '1', name: '算法1'},
-      {value: '2', name: '算法2', },
-      {value: '3', name: '算法3'}
-    ]
+      {value: 'a', name: '算法1',checked: true},
+      {value: 'b', name: '算法2', },
+      {value: 'c', name: '算法3'}
+    ],
+    apiList:{
+      'a':{
+        'api':app.globalData.baseUrl + 'ai/abisFaceA',
+        'appid':'3B9708339F2640B9AFC58D5149294741',
+        'appSecret':'B99B32D1A2E9438C8D6E2A781CD5E97B',
+        'name':'眼神科技人脸对比算法A'
+      },
+      'b':{
+        'api':app.globalData.baseUrl + 'ai/abisFaceB',
+        'appid':'3B9708339F2640B9AFC58D5149294741',
+        'appSecret':'B99B32D1A2E9438C8D6E2A781CD5E97B',
+        'name':'眼神科技人脸对比算法B'
+      },
+      'c':{
+        'api':app.globalData.baseUrl + 'ai/pyFace',
+        'appid':'3B9708339F2640B9AFC58D5149294741',
+        'appSecret':'B99B32D1A2E9438C8D6E2A781CD5E97B',
+        'name':'人脸对比算法C'
+      }
+    }
   },
   lifetimes: {
     attached() {
-      console.log(app.algorithm.img2, 77666)
       let that=this;
-   
       wx.getSetting({
         success(res) {
           if (!res.authSetting['scope.record']) {
@@ -71,33 +90,54 @@ Component({
             }
           })
         },
-        fail() {}
-      })
-      
-      
-    },
-    doCompare() {
-      const urlArr = [
-        'http://ip:port/ai/abisFaceA',
-        'http://ip:port/ai/abisFaceB',
-        'http://ip:port/ai/pyFace'
-      ]
-      wx.request({ 
-        url: 'test.php', //仅为示例，并非真实的接口地址
-        data: {
-          x: '',
-          y: ''
-        },
-        header: {
-          'content-type': 'application/json' // 默认值
-        },
-        success (res) {
-          console.log(res.data)
+        fail() {
+
         }
       })
+    },
+    /**
+     * 比对API
+     */
+    doCompare() {
+      let _this = this
+      let type = this.data.selected
+      const code = CusBase64.CusBASE64.encoder(this.data.apiList[type].appid + ':' + this.data.apiList[type].appSecret)
+      let param = {
+        data:{
+          img1: app.algorithm.img1,
+          img2: app.algorithm.img2
+        }
+      }
+      wx.request({ 
+        url: this.data.apiList[type].api, 
+        method: 'post',
+        data: param,
+        header: {
+          'content-type': 'application/json',
+          'Authorization': 'Basic '+code
+        },
+        success (res) {
+          let info = res.data.result.data
+          let title = ''
+          let msg = `通过 ${_this.data.apiList[type].name} 完成人脸比对`
+          if(Number(info.score) > Number(info.threshold)){
+            title = '人脸对比成功'
+          }else{
+            title = '人脸对比不一致'
+          }
+          _this.modalFn(title,msg)
+        }
+      })
+    },
+    /**
+     * 对比结果输出
+     * @param {String} title 
+     * @param {String} msg 
+     */
+    modalFn(title,msg){
       wx.showModal({
-        title: '人脸对比成功',
-        content: '通过商汤人脸对比V1完成人脸比对',
+        title: title,
+        content: msg,
         cancelText: '退出',
         confirmText: '继续比对',
         success (res) {
@@ -105,10 +145,17 @@ Component({
             console.log('用户点击确定')
           } else if (res.cancel) {
             console.log('用户点击取消')
+            wx.navigateTo({
+              url: '/pages/algorithm/index'
+            })
           }
         }
       })
     },
+    /**
+     * radio取值
+     * @param {Object} e 
+     */
     radioChange (e) {
       this.setData({
         selected: e.detail.value

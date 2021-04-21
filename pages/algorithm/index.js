@@ -21,6 +21,7 @@ Component({
    */
   methods: {
     selectPhoto() {
+
       wx.chooseImage({
         count: 1,
         sizeType: ['original', 'compressed'],
