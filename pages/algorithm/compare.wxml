@@ -1,0 +1,25 @@
+<view class="algorith-con">
+  <view>
+    <camera device-position="front" flash="off" binderror="error" style="margin:1rem auto;width: 150px; height: 150px;border-radius:50%;">
+      <cover-view>
+        <cover-image src='/static/circle.png' ></cover-image>
+      </cover-view>
+    </camera>
+    <view style="text-align:center;">上传成功，请选择比对算法开始比对</view>
+    <view>
+      <radio-group bindchange="radioChange" style="margin: 40px 10px;" class="flex-con flex-center">
+        <label style="width:100%" class="" wx:for="{{items}}" wx:key="{{item.value}}">
+
+          <view class="flex-con flex-center" style="margin-left: 10px;">
+            <radio value="{{item.value}}" checked="{{item.checked}}"/>
+            <view class="">{{item.name}}</view>
+          </view>
+          
+        </label>
+      </radio-group>
+    </view>
+    <view  class="bank-card-add flex-con flex-center">
+      <button bindtap="compare" style="" class="result-btn button-large ">上传比对人像</button>
+   </view>
+  </view>
+</view>

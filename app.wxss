@@ -1,0 +1,84 @@
+@import './background.wxss';
+
+page{
+  background-color: #f8f8f8;
+  color: #333333;
+}
+text, view {
+  font-family: 'PingFangSC-Regular';
+}
+.flex-con{
+  display: flex;
+  flex-direction:row
+}
+.flex-v-con{
+  display: flex;
+  flex-direction:column;
+}
+.flex-center{
+  justify-content: center;
+  align-items: center;
+}
+.flex-v-center{
+  align-items: center;
+}
+.flex-h-space{
+  justify-content: space-around;
+}
+.flex-full {
+  flex: 1;
+}
+.button-large {
+  background: #2372FF;
+  color: white;
+  /* border-radius: 6px; */
+}
+/* checkbox选中钱样式 */
+checkbox{
+  transform: scale(0.6,0.6);
+}
+/* checkbox选中后样式 */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  color: #2372FF;
+  border: solid 1px #2372FF;
+}
+.info-btn{
+  height: 40px;
+  border: 1rpx solid #2372FF;
+  /* border-radius: 8px;
+  border-radius: 8px; */
+  font-size: 15px;
+  color: #2372FF;
+  text-align: center;
+  background: #fff;
+}
+
+.bank-card-add-icon {
+  position: relative;
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+  border-radius: 50%;
+  /* background: url("") center center; */
+  background: white;
+  background-size: contain;
+}
+.close:before, .close:after {
+  position: absolute;
+  content: ' ';
+  height: 15px;
+  width: 1px;
+  background-color: black;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+.list-icon{
+  float:left;
+  width:1.5rem;
+  height:1.5rem;
+}
+

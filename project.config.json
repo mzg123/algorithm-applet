@@ -1,0 +1,110 @@
+{
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": true,
+    "scopeDataCheck": false,
+    "coverView": true,
+    "es6": true,
+    "postcss": true,
+    "compileHotReLoad": false,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "autoAudits": false,
+    "newFeature": false,
+    "uglifyFileName": false,
+    "uploadWithSourceMap": true,
+    "useIsolateContext": true,
+    "nodeModules": false,
+    "enhance": false,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "useApiHostProcess": true,
+    "showShadowRootInWxmlPanel": true,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "bundle": false
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.14.4",
+  "appid": "wx7bf756c454ff11a9",
+  "projectname": "no-plugin",
+  "cloudfunctionTemplateRoot": "",
+  "watchOptions": {
+    "ignore": []
+  },
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "scripts": {},
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "search": {
+      "list": []
+    },
+    "conversation": {
+      "list": []
+    },
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": 0,
+          "name": "电子钱包",
+          "pathName": "pages/service/wallet/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "余额",
+          "pathName": "pages/service/wallet/balance/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 2,
+          "name": "提现",
+          "pathName": "pages/service/wallet/recharge/index",
+          "query": "type=1",
+          "scene": null
+        },
+        {
+          "id": 3,
+          "name": "充值",
+          "pathName": "pages/service/wallet/recharge/index",
+          "query": "type=0",
+          "scene": null
+        },
+        {
+          "id": 4,
+          "name": "扫一扫",
+          "pathName": "pages/service/wallet/scan/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "用户协议",
+          "pathName": "pages/my/userProtocol/index",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}
