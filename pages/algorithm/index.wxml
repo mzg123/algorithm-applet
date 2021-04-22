@@ -1,6 +1,6 @@
 <view class="algorith-con">
   <view style="margin-top:40px;text-align:center;">
-      <image style="margin:auto;" src="/static/Banner_Wallet.png"></image>
+      <image style="margin:auto;" src="/static/uploadFace.png"></image>
   </view>
   <view bindtap="addCard" class="bank-card-add flex-con flex-center">
     <button bindtap="selectPhoto" style="margin-top: 50%;" class="result-btn button-large ">上传比对人像</button>

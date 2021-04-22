@@ -9,12 +9,10 @@
     <view>
       <radio-group bindchange="radioChange" style="margin: 40px 10px;" class="flex-con flex-center">
         <label style="width:100%" class="" wx:for="{{items}}" wx:key="{{item.value}}">
-
           <view class="flex-con flex-center" style="margin-left: 10px;">
             <radio value="{{item.value}}" checked="{{item.checked}}"/>
             <view class="">{{item.name}}</view>
           </view>
-          
         </label>
       </radio-group>
     </view>

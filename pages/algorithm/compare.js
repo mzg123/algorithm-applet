@@ -67,7 +67,6 @@ Component({
       const that = this
       this.ctx.takePhoto({
         success(res) {
-          console.log(res, 9988776655444)
           const tempImagePath = res.tempImagePath
           wx.compressImage({
             src: tempImagePath, // 图片路径
@@ -81,7 +80,6 @@ Component({
                   success(f){
                     app.algorithm.img2 = f.data
                     that.doCompare()
-                    console.log(app.algorithm, 8888)
                   }
                 });
             },
@@ -142,9 +140,9 @@ Component({
         confirmText: '继续比对',
         success (res) {
           if (res.confirm) {
-            console.log('用户点击确定')
+            //console.log('用户点击确定')
           } else if (res.cancel) {
-            console.log('用户点击取消')
+            //console.log('用户点击取消')
             wx.navigateTo({
               url: '/pages/algorithm/index'
             })

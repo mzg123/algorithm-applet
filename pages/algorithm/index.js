@@ -29,7 +29,6 @@ Component({
         success (res) {
           // tempFilePath可以作为img标签的src属性显示图片
           const tempFilePaths = res.tempFilePaths
-          console.log(tempFilePaths)
           wx.compressImage({
             src: tempFilePaths[0], // 图片路径
             quality: 50 ,// 压缩质量
