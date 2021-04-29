@@ -17,7 +17,7 @@
       </radio-group>
     </view>
     <view  class="bank-card-add flex-con flex-center">
-      <button bindtap="compare" style="" class="result-btn button-large ">上传比对人像</button>
+      <button bindtap="compare" style="" class="result-btn button-large ">开始对比</button>
    </view>
   </view>
 </view>

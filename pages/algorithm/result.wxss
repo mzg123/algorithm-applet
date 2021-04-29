@@ -1,0 +1,22 @@
+/* pages/algorithm/result.wxss */
+
+.wrapper{
+  width:100%;
+  height:100%;
+  text-align: center;
+  padding-top:50px;
+}
+.btnBox{
+  width:100%;
+  margin-top:30px;
+}
+.btnBox button{
+  display:inline-block;
+}
+.btnBox button:nth-child(1){
+  margin-right:10px;
+}
+.icon-box-desc{
+  width:80%;
+  margin:20px auto;
+}

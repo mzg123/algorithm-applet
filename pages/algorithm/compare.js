@@ -13,10 +13,11 @@ Component({
    * 组件的初始数据
    */
   data: {
-    selected: 'a',
+    selected: '',
+    curName:'',
     items: [
-      {value: 'a', name: '算法1',checked: true},
-      {value: 'b', name: '算法2', },
+      {value: 'a', name: '算法1'},
+      {value: 'b', name: '算法2'},
       {value: 'c', name: '算法3'}
     ],
     apiList:{
@@ -64,6 +65,15 @@ Component({
    */
   methods: {
     compare() {
+      let type = this.data.selected
+      
+      if(type===''){
+        wx.showToast({
+          title: '请选择算法',
+          icon:'none'
+        })
+        return false
+      }
       const that = this
       this.ctx.takePhoto({
         success(res) {
@@ -106,6 +116,7 @@ Component({
           img2: app.algorithm.img2
         }
       }
+      wx.showLoading()
       wx.request({ 
         url: this.data.apiList[type].api, 
         method: 'post',
@@ -115,15 +126,38 @@ Component({
           'Authorization': 'Basic '+code
         },
         success (res) {
-          let info = res.data.result.data
-          let title = ''
-          let msg = `通过 ${_this.data.apiList[type].name} 完成人脸比对`
-          if(Number(info.score) > Number(info.threshold)){
-            title = '人脸对比成功'
+          wx.hideLoading()
+          let {retCode,retMsg} = res.data.result
+          if(retCode === "0"){
+            let info = res.data.result.data
+            let title = ''
+            let flag = false
+            let msg = `通过 ${_this.data.apiList[type].name} 完成人脸比对`
+            if(Number(info.score) > Number(info.threshold)){
+              title = '人脸对比成功'
+              flag = true
+            }else{
+              title = '人脸对比不一致'
+              flag = false
+            }
+            //_this.modalFn(title,msg)
+            app.res = {flag,title,msg}
+            wx.redirectTo({
+              url: `/pages/algorithm/result`,
+            })
           }else{
-            title = '人脸对比不一致'
+            // wx.showToast({
+            //   title: retMsg,
+            //   icon:'none'
+            // })
+            let title = '人脸对比不一致'
+            let flag = false
+            let msg = `通过 ${_this.data.apiList[type].name} 完成人脸比对`
+            app.res = {flag,title,msg}
+            wx.redirectTo({
+              url: `/pages/algorithm/result`,
+            })
           }
-          _this.modalFn(title,msg)
         }
       })
     },
@@ -143,7 +177,7 @@ Component({
             //console.log('用户点击确定')
           } else if (res.cancel) {
             //console.log('用户点击取消')
-            wx.navigateTo({
+            wx.redirectTo({
               url: '/pages/algorithm/index'
             })
           }
@@ -155,9 +189,19 @@ Component({
      * @param {Object} e 
      */
     radioChange (e) {
-      this.setData({
-        selected: e.detail.value
-      })
+      let arr = this.data.items
+      for(let i in arr){
+        if(arr[i].value === e.detail.value){
+          wx.showToast({
+            title: '当前算法：'+arr[i].name,
+            icon:'none'
+          })
+          this.setData({
+            selected: e.detail.value,
+            curName:arr[i].name
+          })
+        }
+      }
     }
   }
 })

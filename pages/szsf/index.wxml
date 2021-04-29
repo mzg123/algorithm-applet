@@ -1,0 +1,10 @@
+<!-- <navigator id="nav" url="plugin://szsf-plugin/szsf-page">
+  跳转到数字身份页面
+</navigator> -->
+<!-- <button bindtap="goToCode" style="margin:2rem;">展示二维码</button> -->
+<button bindtap="goToTest" style="margin:2rem;">插件方式：数字身份</button>
+<button bindtap="goToSZSF" style="margin:2rem;">独立页面：数字身份</button>
+
+<!-- <button id="add" bindtap="addItem">Add item</button>
+
+<hello-list items="{{ items }}" /> -->

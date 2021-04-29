@@ -40,7 +40,7 @@ Component({
                   filePath:imgcf,
                   success(f){
                     app.algorithm.img1 = f.data
-                    wx.navigateTo({
+                    wx.redirectTo({
                       url: '/pages/algorithm/compare',
                     })
                   }

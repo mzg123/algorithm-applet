@@ -1,1 +1,9 @@
 /* pages/service/algorithm/compare.wxss */
+.curItem{
+  background:#ccc;
+  border-radius: 30px;
+  width:auto;
+  padding:10px;
+  margin:20px;
+  text-align: center;
+}

@@ -1,0 +1,6 @@
+<view>
+  <szsf-component 
+  initData="{{data}}" 
+  bind:ResultEvent="resultFunc"> 
+  </szsf-component>
+</view>

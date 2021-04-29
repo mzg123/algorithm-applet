@@ -1,0 +1,25 @@
+<!--pages/algorithm/result.wxml-->
+
+<view class="wrapper">
+
+  <view class="icon-box" wx:if="{{res.flag}}">
+    <icon class="icon-box-img" type="success" size="93"></icon>
+    <view class="icon-box-ctn">
+      <view class="icon-box-title">{{res.title}}</view>
+      <view class="icon-box-desc">{{res.msg}}</view>
+    </view>
+  </view>
+
+  <view class="icon-box" wx:if="{{!res.flag}}">
+    <icon class="icon-box-img" type="warn" size="93"></icon>
+    <view class="icon-box-ctn">
+      <view class="icon-box-title">{{res.title}}</view>
+      <view class="icon-box-desc">{{res.msg}}</view>
+    </view>
+  </view>
+
+  <view class="btnBox">
+    <button bindtap="cancel" type="primary" plain="true">退出</button>
+    <button bindtap="ok" type="primary" plain="true">继续对比</button>
+  </view>
+</view> 

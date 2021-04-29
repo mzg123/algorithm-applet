@@ -1,8 +1,8 @@
 {
-
   "entryPagePath": "pages/algorithm/index",
   "pages": [
-    "pages/algorithm/index"
+    "pages/algorithm/index",
+    "pages/algorithm/result"
   ],
   "window": {
     "backgroundColor": "#f8f8f8",
@@ -12,8 +12,7 @@
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
-  "useExtendedLib": {
-  },
+  "useExtendedLib": {},
   "plugins": {
     "szsf-wz-plugin": {
       "version": "1.0.16",
