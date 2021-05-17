@@ -3,6 +3,7 @@ const sdkData = require('./data')
 App({
   algorithm: {},
   res:{},
+  userInfo: {},
   globalData:{
     baseUrl:'https://didev.dccnet.com.cn:8080/',
     userName:'',

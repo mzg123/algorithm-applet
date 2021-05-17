@@ -31,7 +31,7 @@ Component({
           const tempFilePaths = res.tempFilePaths
           wx.compressImage({
             src: tempFilePaths[0], // 图片路径
-            quality: 50 ,// 压缩质量
+            quality: 10 ,// 压缩质量
             success(cf){
               let imgcf=cf.tempFilePath;
                 let  FileSystemManager=wx.getFileSystemManager();
@@ -40,6 +40,7 @@ Component({
                   filePath:imgcf,
                   success(f){
                     app.algorithm.img1 = f.data
+                    console.log(444, f.data)
                     wx.redirectTo({
                       url: '/pages/algorithm/compare',
                     })

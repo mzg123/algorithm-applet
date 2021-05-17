@@ -1,6 +1,9 @@
 {
-  "entryPagePath": "pages/algorithm/index",
+  "entryPagePath": "pages/algorithm/applySZSF/index",
   "pages": [
+    "pages/algorithm/applySZSF/index",
+    "pages/algorithm/showSZSF/show-szsf",
+    "pages/algorithm/showSZSF/index",
     "pages/algorithm/index",
     "pages/algorithm/result"
   ],

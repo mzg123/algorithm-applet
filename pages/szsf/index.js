@@ -2,8 +2,8 @@
  * @title 数字身份微信小程序SDK
  * 
  */
-let szsfPlugin = requirePlugin('szsf-plugin')
-const plugin = requirePlugin('szsf-wz-plugin');
+let szsfPlugin = {} //requirePlugin('szsf-plugin')
+const plugin = {} //requirePlugin('szsf-wz-plugin');
 Page({
   data: {
     items: [],

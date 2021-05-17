@@ -1,0 +1,7 @@
+<view class="banner-bg {{freeze?'banner-freeze':''}}">
+    <image src="../../static/code_logo.png" class="banner-icon"></image>
+    <view class="banner-title"><slot name="name"></slot></view>
+    <view class="banner-date"><slot name="date"></slot></view>
+    <slot name="des"></slot>
+    <image wx:if="{{freeze}}" src="../../static/lock.png" class="banner-lock"></image>
+ </view>

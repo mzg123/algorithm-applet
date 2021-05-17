@@ -1,5 +1,6 @@
 // pages/service/algorithm/compare.js
 const CusBase64 = require('../../utils/base64.js');
+const faceData = require('./faceData')
 const app = getApp()
 Component({
   /**
@@ -16,28 +17,28 @@ Component({
     selected: '',
     curName:'',
     items: [
-      {value: 'a', name: '算法1'},
-      {value: 'b', name: '算法2'},
-      {value: 'c', name: '算法3'}
+      {value: 'a', name: '眼神科技'},
+      {value: 'b', name: '工银AI'},
+      {value: 'c', name: '图灵人脸'}
     ],
     apiList:{
       'a':{
         'api':app.globalData.baseUrl + 'ai/abisFaceA',
         'appid':'3B9708339F2640B9AFC58D5149294741',
         'appSecret':'B99B32D1A2E9438C8D6E2A781CD5E97B',
-        'name':'眼神科技人脸对比算法A'
+        'name':'眼神科技人脸对比算法'
       },
       'b':{
         'api':app.globalData.baseUrl + 'ai/abisFaceB',
         'appid':'3B9708339F2640B9AFC58D5149294741',
         'appSecret':'B99B32D1A2E9438C8D6E2A781CD5E97B',
-        'name':'眼神科技人脸对比算法B'
+        'name':'工银AI'
       },
       'c':{
         'api':app.globalData.baseUrl + 'ai/pyFace',
         'appid':'3B9708339F2640B9AFC58D5149294741',
         'appSecret':'B99B32D1A2E9438C8D6E2A781CD5E97B',
-        'name':'人脸对比算法C'
+        'name':'图灵人脸'
       }
     }
   },
@@ -75,6 +76,9 @@ Component({
         return false
       }
       const that = this
+      if (this.ctx && !this.ctx.takePhoto) {
+        this.ctx = wx.createCameraContext();
+      }
       this.ctx.takePhoto({
         success(res) {
           const tempImagePath = res.tempImagePath
@@ -110,10 +114,19 @@ Component({
       let _this = this
       let type = this.data.selected
       const code = CusBase64.CusBASE64.encoder(this.data.apiList[type].appid + ':' + this.data.apiList[type].appSecret)
+      if (faceData[app.userInfo.pID]) {
+        if (faceData[app.userInfo.pID].name !== app.userInfo.pName) {
+          wx.showToast({
+            title: '身份信息不匹配',
+            icon:'none'
+          })
+          return
+        }
+      }
       let param = {
         data:{
-          img1: app.algorithm.img1,
-          img2: app.algorithm.img2
+          img1: faceData[app.userInfo.pID] ? faceData[app.userInfo.pID].img : '999',
+          img2: app.algorithm.img2,
         }
       }
       wx.showLoading()
@@ -128,6 +141,7 @@ Component({
         success (res) {
           wx.hideLoading()
           let {retCode,retMsg} = res.data.result
+          console.log(res.data.result, 888)
           if(retCode === "0"){
             let info = res.data.result.data
             let title = ''
@@ -136,16 +150,21 @@ Component({
             if(Number(info.score) > Number(info.threshold)){
               title = '人脸对比成功'
               flag = true
+              wx.navigateTo({
+                url: `/pages/algorithm/showSZSF/index`,
+              })
             }else{
               title = '人脸对比不一致'
               flag = false
+              app.res = {flag,title,msg}
+              wx.redirectTo({
+                url: `/pages/algorithm/result`,
+              })
             }
             //_this.modalFn(title,msg)
-            app.res = {flag,title,msg}
-            wx.redirectTo({
-              url: `/pages/algorithm/result`,
-            })
+            
           }else{
+            
             // wx.showToast({
             //   title: retMsg,
             //   icon:'none'

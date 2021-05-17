@@ -20,7 +20,7 @@ Component({
   methods:{
     cancel(){
       wx.redirectTo({
-        url: '/pages/algorithm/index',
+        url: '/pages/algorithm/applySZSF/index',
       })
     },
     ok(){

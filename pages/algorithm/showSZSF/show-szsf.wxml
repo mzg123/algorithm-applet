@@ -1,0 +1,43 @@
+<view class="show-container">
+   <view class="{{freeze?'code-area-freeze':'code-area'}}">
+      <view class="code-banner">
+         <image src="../../../static/code_logo.png" class="code-logo"></image>
+         <view class="code-text">
+            <view class="code-title">{{initData.userName}}</view>
+            <view  class="code-desc">有效期至：2021-10-29</view>
+         </view>
+         <image src="../../../static/freeze_icon.png" wx:if="{{freeze}}" class="freeze-logo"></image>
+      </view>
+      <view class="code-bottom">
+         <image src="../../../static/wz_logo.png" class="wz-logo"></image>
+         <view class="freeze-tip"  wx:if="{{freeze}}">
+            <image src="../../static/freeze.png" class="freeze-pic"></image>
+            <view>当前身份已冻结，请解冻后进行后续操作。</view>
+         </view>
+         <view class="^szsf-qrcode" style="text-align:center;" wx:if="{{showError && !freeze}}">
+            <view> 加载失败，请刷新</view>
+            <image src="data:image/png;base64,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"  bindtap="refreshQRcode" style="margin:3rem auto; width:4rem;height:4rem;"></image>
+         </view>
+         <view class="^szsf-qrcode" wx:if="{{!showError && !freeze}}" >
+            <canvas canvas-id="szsfqrcode" class="canvas-code" bindtap="refreshQRcode"></canvas>
+            <!--新wx接口采用此模式 <canvas type="2d" id="szsfqrcode" style="width: 300px; height: 300px;"></canvas>  -->
+            <view class="^szsf-qrcode-bar">
+               <view class="^szsf-qrcode-desc">二维码由雄安新区政府生成 {{clock}}s 刷新</view>
+            </view>
+         </view>
+      </view>
+   </view>
+ <!-- <view style="margin:1rem;">
+    <banner freeze="{{freeze}}">
+      <view 
+      slot="name">{{szDate?'姓名':'雄安数字身份'}}</view>
+      <view
+        wx:if="{{szDate}}"
+        slot="date">有效期至：{{szDate}}</view>
+    </banner>
+</view> -->
+
+ 
+ 
+ 
+</view>

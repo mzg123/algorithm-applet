@@ -1,0 +1,15 @@
+<view class="^szsf-container ^szsf-bg-top">
+  <view class="^szsf-form">
+  <input class="^szsf-input {{personName?'^szsf-font':''}}" placeholder="请输入姓名" model:value="{{personName}}" maxlength="15" />
+  <view class="^szsf-input">
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" disabled="false">
+        <view class="^szsf-select ^szsf-font">
+          {{array[index]}}
+        </view>
+      </picker>
+  </view>
+  <input class="^szsf-input {{personID?'^szsf-font':''}}" placeholder="请输入证件号码" model:value="{{personID}}" maxlength="18"  />
+  <button class="^szsf-button" bindtap="sendInfo">下一步</button>
+  </view>
+ 
+</view>
